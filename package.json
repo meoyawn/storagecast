@@ -7,8 +7,7 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-hook-form": "^7.3.4",
-    "rss": "^1.2.2",
-    "yandex-disk": "^0.0.8"
+    "rss": "^1.2.2"
   },
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.2",

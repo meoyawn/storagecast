@@ -2091,13 +2091,6 @@ doctrine@^3.0.0:
   dependencies:
     esutils "^2.0.2"
 
-dom-js@*:
-  version "0.0.9"
-  resolved "https://registry.yarnpkg.com/dom-js/-/dom-js-0.0.9.tgz#2d6dd6c211af018f003f30edf5688f1ef86f15a7"
-  integrity sha1-LW3WwhGvAY8APzDt9WiPHvhvFac=
-  dependencies:
-    sax ">=0.1.5"
-
 domain-browser@4.19.0:
   version "4.19.0"
   resolved "https://registry.yarnpkg.com/domain-browser/-/domain-browser-4.19.0.tgz#1093e17c0a17dbd521182fe90d49ac1370054af1"
@@ -5443,7 +5436,7 @@ sane@^4.0.3:
     minimist "^1.1.1"
     walker "~1.0.5"
 
-sax@>=0.1.5, sax@^1.2.4:
+sax@^1.2.4:
   version "1.2.4"
   resolved "https://registry.yarnpkg.com/sax/-/sax-1.2.4.tgz#2816234e2378bddc4e5354fab5caa895df7100d9"
   integrity sha512-NqVDv9TpANUjFm0N8uM5GxL36UgKi9/atZw+x7YFnQ8ckwFGKrl4xX4yWtrey3UJm5nP1kUbnYgLopqWNSRhWw==
@@ -6664,13 +6657,6 @@ yallist@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/yallist/-/yallist-4.0.0.tgz#9bb92790d9c0effec63be73519e11a35019a3a72"
   integrity sha512-3wdGidZyq5PB084XLES5TpOSRA3wjXAlIWMhum2kRcv/41Sn2emQ0dycQW4uZXLejwKvg6EsvbdlVL+FYEct7A==
-
-yandex-disk@^0.0.8:
-  version "0.0.8"
-  resolved "https://registry.yarnpkg.com/yandex-disk/-/yandex-disk-0.0.8.tgz#9aa81953f16478a5fa287d0d56dc703498eb1109"
-  integrity sha1-mqgZU/FkeKX6KH0NVtxwNJjrEQk=
-  dependencies:
-    dom-js "*"
 
 yargs-parser@20.x:
   version "20.2.7"
