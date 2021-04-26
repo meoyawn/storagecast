@@ -10,8 +10,6 @@ module.exports = {
       './src/**/*.{jsx,tsx}'
     ]
   },
-  theme: {
-
-  },
+  theme: {},
   variants: {},
 }
