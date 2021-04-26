@@ -1,0 +1,10 @@
+.next/
+node_modules/
+.now/
+.idea/
+yarn-error.log
+
+gen/
+public/sitemap.xml
+public/manifest/
+out/
