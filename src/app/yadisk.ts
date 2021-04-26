@@ -15,7 +15,6 @@ const publicResource = async (url: string, path: string | undefined): Promise<Re
       path,
     }
   }))
-
   return JSON.parse(await r.text())
 }
 
