@@ -1,9 +1,9 @@
 import { mkUrl } from "../lib/url";
-import { File, Item, Resource } from "../lib/yadisk/Resource";
+import { DiskDir, DiskFile, DiskItem, DiskResource } from "../lib/yadisk/Resource";
 
 const BASE_URL = 'https://cloud-api.yandex.net'
 
-const publicResource = async (url: string, path: string | undefined): Promise<Resource> => {
+const publicResource = async (url: string, path: string | undefined): Promise<DiskResource> => {
   const r = await fetch(mkUrl({
     baseURL: BASE_URL,
     path: "/v1/disk/public/resources",
@@ -11,7 +11,7 @@ const publicResource = async (url: string, path: string | undefined): Promise<Re
       public_key: url,
       limit: Number.MAX_SAFE_INTEGER,
       preview_crop: true,
-      preview_size: "XL",
+      preview_size: "XXXL",
       path,
     }
   }))
@@ -19,11 +19,11 @@ const publicResource = async (url: string, path: string | undefined): Promise<Re
 }
 
 interface RecursiveDir {
-  dir: Resource
-  files: ReadonlyArray<File>
+  dir: DiskDir
+  files: ReadonlyArray<DiskFile>
 }
 
-const dirFiles = ({ path, public_key, type }: Item): Promise<ReadonlyArray<File>> =>
+const dirFiles = ({ path, public_key, type }: DiskItem): Promise<ReadonlyArray<DiskFile>> =>
   type === "dir"
     ? recursiveResource(public_key, path).then(({ files }) => files)
     : Promise.resolve([])

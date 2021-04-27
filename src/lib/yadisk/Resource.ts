@@ -1,34 +1,19 @@
-export interface Resource {
-  public_key: string
+export interface DiskDir {
+  type: "dir"
   public_url: string
-  _embedded: Embedded
-  name: string
-  resource_id: string
-  revision: number
-  created: string
-  modified: string
-  owner: Owner
-  path: string
+  public_key: string
   comment_ids: CommentIDS
-  type: "file" | "dir"
+  name: string
+  created: string
+  resource_id: string
+  modified: string
+  path: string
+  revision: number
   views_count: number
 }
 
-export type Item = Dir | File
-
-interface Embedded {
-  sort: string
-  public_key: string
-  items: ReadonlyArray<Item>
-  limit: number
-  offset: number
-  path: string
-  total: number
-}
-
-export interface File {
+export interface DiskFile {
   type: "file"
-  antivirus_status: "clean"
   public_key: string
   comment_ids: CommentIDS
   name: string
@@ -46,27 +31,23 @@ export interface File {
   preview?: string
 }
 
-export interface Dir {
-  type: "dir"
-  antivirus_status: "clean"
+export interface DiskResource extends DiskDir {
+  _embedded: Embedded
+}
+
+export type DiskItem = DiskDir | DiskFile
+
+interface Embedded {
+  sort: string
   public_key: string
-  comment_ids: CommentIDS
-  name: string
-  created: string
-  resource_id: string
-  modified: string
+  items: ReadonlyArray<DiskItem>
+  limit: number
+  offset: number
   path: string
-  revision: number
-  views_count: number
+  total: number
 }
 
 interface CommentIDS {
   private_resource: string
   public_resource: string
-}
-
-interface Owner {
-  login: string
-  display_name: string
-  uid: string
 }
