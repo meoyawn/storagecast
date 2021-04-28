@@ -5,7 +5,7 @@ import RSS from "rss"
 import { recursiveResource } from "../../../app/yadisk"
 import { decodeDiskURL } from "../../../app/YaDiskURL"
 import { DiskDir, DiskFile } from "../../../lib/yadisk/Resource"
-import { reqURL } from "../../../lib/url";
+import { reqURL } from "../../../lib/url"
 
 const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>) => {
   const img = files.find(({ media_type }) => media_type === "image")?.preview
@@ -30,7 +30,7 @@ const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>
 
   for (const { mime_type, path, file, resource_id, size } of audios) {
     rss.item({
-      title: path.replaceAll("/", " ").replace(/\.[^/.]+$/, "").trim(),
+      title: path.replace(/\//g, " ").replace(/\.[^/.]+$/, "").trim(),
       date: new Date(monotoneDate),
       description: '',
       url: '',

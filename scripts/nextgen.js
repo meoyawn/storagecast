@@ -67,9 +67,14 @@ async function genManifest() {
 
   const manifest = {
     name: dotEnv.SITE_NAME,
-    icons: icons,
-    theme_color: dotEnv.THEME_COLOR, // browser toolbar
-    background_color: dotEnv.THEME_COLOR, // splash screen
+    icons,
+  }
+
+  if (dotEnv.THEME_COLOR) {
+    // browser toolbar
+    manifest.theme_color = dotEnv.THEME_COLOR
+    // splash screen
+    manifest.background_color = dotEnv.THEME_COLOR
   }
 
   fs.writeFileSync(`public${dotEnv.MANIFEST}`, JSON.stringify(manifest))

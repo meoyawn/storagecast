@@ -12,7 +12,7 @@ export default class MyDocument extends Document {
           <link rel="icon" type="image/png" sizes="32x32" href="/icons/icon32.png" />
           <link rel="apple-touch-icon" href="/icons/icon192.png" />
 
-          <link rel="manifest" href="/site.webmanifest" />
+          <link rel="manifest" href="/manifest/site.webmanifest" />
 
           {process.env.THEME_COLOR && <meta name="theme-color" content={process.env.THEME_COLOR} />}
         </Head>
