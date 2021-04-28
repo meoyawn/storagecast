@@ -17,7 +17,7 @@ export default function Index(): JSX.Element {
   return (
     <div className='flex flex-col space-y-4'>
 
-      <h1 className="text-2xl font-semibold">Yandex.Disk folder as a podcast</h1>
+      <h1 className="text-3xl font-semibold">Yandex.Disk folder as a podcast</h1>
 
       <a
         className="text-blue-600 font-medium"
