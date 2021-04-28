@@ -1,1 +1,7 @@
-# Next.js + Typescript + Tailwind CSS
+# Storagecast
+
+Yandex.Disk foders as podcasts
+
+https://storagecast.vercel.app/
+
+For YouTube use https://listenbox.app/
