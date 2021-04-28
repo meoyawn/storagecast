@@ -5,6 +5,7 @@ import RSS from "rss"
 import { recursiveResource } from "../../../app/yadisk"
 import { decodeDiskURL } from "../../../app/YaDiskURL"
 import { DiskDir, DiskFile } from "../../../lib/yadisk/Resource"
+import { reqURL } from "../../../lib/url";
 
 const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>) => {
   const img = files.find(({ media_type }) => media_type === "image")?.preview
@@ -19,9 +20,8 @@ const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>
     ],
 
     title: dir.name,
-    description: dir.public_url,
-    site_url: 'https://disk.yandex.ru/',
-    feed_url: req.url!,
+    site_url: dir.public_url,
+    feed_url: reqURL(req),
     pubDate: dir.created,
   })
 
@@ -52,22 +52,17 @@ const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>
 export default nc<NextApiRequest, NextApiResponse>()
   .get(async (req, res) => {
     const { encoded_url } = req.query
-    if (typeof encoded_url === "string") {
-      const diskURL = decodeDiskURL(encoded_url)
-      if (diskURL.startsWith("https")) {
-        const { dir, files } = await recursiveResource(diskURL)
-        const rss = toRSS(req, dir, files)
-        res
-          .writeHead(200, { 'content-type': 'application/xml' })
-          .end(rss.xml())
-      } else {
-        res
-          .writeHead(400)
-          .end(`${diskURL} is not a Yandex Disk URL`)
-      }
+    const diskURL = decodeDiskURL(encoded_url as string)
+
+    if (diskURL.startsWith("https")) {
+      const { dir, files } = await recursiveResource(diskURL)
+      const rss = toRSS(req, dir, files)
+      res
+        .writeHead(200, { 'content-type': 'application/xml' })
+        .end(rss.xml())
     } else {
       res
         .writeHead(400)
-        .end()
+        .end(`${diskURL} is not a Yandex Disk URL`)
     }
   })

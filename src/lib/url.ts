@@ -1,3 +1,5 @@
+import { IncomingMessage } from "http";
+
 export const mkUrl = ({ baseURL, path, query }: {
   baseURL: string
   path: string
@@ -18,3 +20,15 @@ export const mkUrl = ({ baseURL, path, query }: {
 
   return ret
 }
+
+// noinspection HttpUrlsUsage
+const base = (host: string): string =>
+  host.startsWith("local")
+    ? `http://${host}`
+    : `https://${host}`
+
+export const reqURL = ({ headers, url }: IncomingMessage): string =>
+  mkUrl({
+    baseURL: base(headers.host ?? ''),
+    path: url ?? '',
+  })

@@ -1,4 +1,4 @@
 deploy:
 	rm -rf .next
-	yarn build
+	vercel --prod
 	say "front deployed"

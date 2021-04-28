@@ -9,7 +9,7 @@ export default function Index(): JSX.Element {
 
   const url = text.startsWith("https://")
     ? mkUrl({
-      baseURL: process.env.NEXT_PUBLIC_SITE!,
+      baseURL: process.env.NEXT_PUBLIC_SITE ?? '',
       path: `/api/yadisk/${encodeDiskURL(text)}`,
     })
     : undefined
@@ -23,9 +23,7 @@ export default function Index(): JSX.Element {
         <input
           type="url"
           required
-          onChange={e => {
-            setText(e.target.value)
-          }}
+          onChange={({ target }) => setText(target.value)}
         />
       </label>
 

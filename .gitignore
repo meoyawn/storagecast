@@ -8,3 +8,5 @@ gen/
 public/sitemap.xml
 public/manifest/
 out/
+
+.vercel
