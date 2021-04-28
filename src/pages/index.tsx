@@ -2,6 +2,7 @@ import React, { useState } from "react"
 
 import { mkUrl } from "../lib/url";
 import { encodeDiskURL } from "../app/YaDiskURL";
+import SEO from "../components/SEO";
 
 // noinspection JSUnusedGlobalSymbols
 export default function Index(): JSX.Element {
@@ -16,6 +17,8 @@ export default function Index(): JSX.Element {
 
   return (
     <div className='flex flex-col space-y-4'>
+
+      <SEO title="Storagecast" />
 
       <h1 className="text-3xl font-semibold">Yandex.Disk folder as a podcast</h1>
 
