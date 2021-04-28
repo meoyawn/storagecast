@@ -5,13 +5,14 @@ export const mkUrl = ({ baseURL, path, query }: {
 }): string => {
   let ret = baseURL + path
 
-  let firstVal = true
-  for (const k in query) {
-    const v = query[k]
-    if (v !== undefined && v !== null) {
-      const prefix = firstVal ? "?" : "&"
-      ret += `${prefix}${k}=${encodeURIComponent(v)}`
-      firstVal = false
+  if (query) {
+    let firstVal = true
+    for (const [k, v] of Object.entries(query)) {
+      if (v !== undefined && v !== null) {
+        const prefix = firstVal ? "?" : "&"
+        ret += `${prefix}${k}=${encodeURIComponent(v)}`
+        firstVal = false
+      }
     }
   }
 
