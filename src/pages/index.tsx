@@ -15,10 +15,21 @@ export default function Index(): JSX.Element {
     : undefined
 
   return (
-    <div className='flex flex-col space-y-2'>
+    <div className='flex flex-col space-y-4'>
+
+      <h1 className="text-2xl font-semibold">Yandex.Disk folder as a podcast</h1>
+
+      <a
+        className="text-blue-600 font-medium"
+        href="https://github.com/meoyawn/storagecast"
+        target="_blank"
+        rel="noreferrer"
+      >
+        Source code
+      </a>
 
       <label className="flex flex-col">
-        <span className="font-semibold">Yandex Disk URL:</span>
+        <span className="font-semibold">Yandex.Disk URL:</span>
 
         <input
           type="url"
