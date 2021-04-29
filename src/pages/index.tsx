@@ -18,9 +18,12 @@ export default function Index(): JSX.Element {
   return (
     <div className='flex flex-col space-y-4'>
 
-      <SEO title="Storagecast" />
+      <SEO
+        title="Storagecast"
+        description="Yandex.Disk as a podcast"
+      />
 
-      <h1 className="text-3xl font-semibold">Yandex.Disk folder as a podcast</h1>
+      <h1 className="text-3xl font-semibold">Yandex.Disk as a podcast</h1>
 
       <a
         className="text-blue-600 font-medium"
@@ -32,7 +35,7 @@ export default function Index(): JSX.Element {
       </a>
 
       <label className="flex flex-col">
-        <span className="font-semibold">Yandex.Disk URL:</span>
+        <span className="font-semibold">Folder URL:</span>
 
         <input
           type="url"

@@ -1,6 +1,6 @@
 # Storagecast
 
-Yandex.Disk folders as podcasts
+Yandex.Disk as a podcast
 
 https://storagecast.vercel.app/
 
