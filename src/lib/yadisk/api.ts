@@ -18,9 +18,7 @@ export const publicResource = async (url: string, path: string | undefined): Pro
   return JSON.parse(await r.text())
 }
 
-export const publicResourceDownload = async (public_key: string, path: string): Promise<{
-  href: string
-}> => {
+export const publicResourceDownload = async (public_key: string, path: string): Promise<{ href: string }> => {
   const r = await fetch(mkUrl({
     baseURL: BASE_URL,
     path: "/v1/disk/public/resources/download",

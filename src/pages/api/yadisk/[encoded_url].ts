@@ -5,7 +5,17 @@ import RSS from "rss"
 import { recursiveResource } from "../../../app/yadisk"
 import { decodeDiskURL } from "../../../app/YaDiskURL"
 import { DiskDir, DiskFile } from "../../../lib/yadisk/Resource"
-import { reqURL } from "../../../lib/url"
+import { mkUrl, reqURL } from "../../../lib/url"
+
+const downloadUrl = ({ public_key, path }: DiskFile): string =>
+  mkUrl({
+    baseURL: process.env.NEXT_PUBLIC_SITE ?? '',
+    path: "/api/yadisk/download",
+    query: {
+      public_key,
+      path,
+    }
+  })
 
 const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>) => {
   const img = files.find(({ media_type }) => media_type === "image")?.preview
@@ -28,14 +38,16 @@ const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>
   const audios = files.filter(({ media_type }) => media_type === "audio")
   let monotoneDate = Math.min(...audios.map(({ created }) => Date.parse(created)))
 
-  for (const { mime_type, path, file, resource_id, size } of audios) {
+  for (const a of audios) {
+    const { mime_type, path, resource_id, size } = a
+
     rss.item({
       title: path.replace(/\//g, " ").replace(/\.[^/.]+$/, "").trim(),
       date: new Date(monotoneDate),
       description: '',
       url: '',
       enclosure: {
-        url: file,
+        url: downloadUrl(a),
         type: mime_type,
         size,
       },
