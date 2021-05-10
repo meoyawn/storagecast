@@ -8,8 +8,8 @@ export default class MyDocument extends Document {
     return (
       <Html lang="en">
         <Head>
-          <link rel="icon" type="image/svg+xml" href="/icon.svg" />
-          <link rel="mask-icon" type="image/svg+xml" href="/icon.svg" color="#000" />
+          <link rel="icon" href="/icon.svg" />
+          <link rel="mask-icon" href="/icon.svg" color="#000" />
         </Head>
 
         <body>
