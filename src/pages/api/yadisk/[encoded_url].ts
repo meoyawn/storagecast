@@ -1,7 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next"
-import nc from 'next-connect'
 import RSS from "rss"
-import morgan from "morgan"
 
 import { recursiveResource } from "../../../app/yadisk"
 import { decodeDiskURL } from "../../../app/YaDiskURL"
@@ -66,21 +64,19 @@ const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>
 }
 
 // noinspection JSUnusedGlobalSymbols
-export default nc<NextApiRequest, NextApiResponse>()
-  .use(morgan('tiny'))
-  .get(async (req, res) => {
-    const { encoded_url } = req.query
-    const diskURL = decodeDiskURL(encoded_url as string)
+export default async (req: NextApiRequest, res: NextApiResponse): Promise<void> => {
+  const { encoded_url } = req.query
+  const diskURL = decodeDiskURL(encoded_url as string)
 
-    if (diskURL.startsWith("https")) {
-      const { dir, files } = await recursiveResource(diskURL)
-      const rss = toRSS(req, dir, files)
-      res
-        .writeHead(200, { 'content-type': 'application/xml' })
-        .end(rss.xml())
-    } else {
-      res
-        .writeHead(400)
-        .end(`${diskURL} is not a Yandex Disk URL`)
-    }
-  })
+  if (diskURL.startsWith("https")) {
+    const { dir, files } = await recursiveResource(diskURL)
+    const rss = toRSS(req, dir, files)
+    res
+      .writeHead(200, { 'content-type': 'application/xml' })
+      .end(rss.xml())
+  } else {
+    res
+      .writeHead(400)
+      .end(`${diskURL} is not a Yandex Disk URL`)
+  }
+}

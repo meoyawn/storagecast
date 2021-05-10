@@ -1,9 +1,7 @@
 {
   "dependencies": {
     "@headlessui/react": "^1.0.0",
-    "morgan": "^1.10.0",
     "next": "^10.0.1",
-    "next-connect": "^0.10.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "rss": "^1.2.2"
@@ -11,7 +9,6 @@
   "devDependencies": {
     "@tailwindcss/forms": "^0.3.2",
     "@types/jest": "^26.0.7",
-    "@types/morgan": "^1.9.2",
     "@types/node": "^15.0.1",
     "@types/react": "^17.0.0",
     "@types/rss": "^0.0.28",
