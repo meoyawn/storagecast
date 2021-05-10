@@ -21,14 +21,18 @@ const downloadUrl = ({ public_key, path }: DiskFile): string =>
 const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>) => {
   const img = files.find(({ media_type }) => media_type === "image")?.preview
 
+  const custom_elements: Record<string, unknown>[] = [
+    { 'itunes:author': 'Storagecast' },
+  ]
+  if (img) {
+    custom_elements.push({ 'itunes:image': { _attr: { href: img } } })
+  }
+
   const rss = new RSS({
     custom_namespaces: {
       itunes: 'https://www.itunes.com/dtds/podcast-1.0.dtd',
     },
-    custom_elements: [
-      { 'itunes:author': 'Storagecast' },
-      { 'itunes:image': { _attr: { href: img } } },
-    ],
+    custom_elements,
 
     title: dir.name,
     site_url: dir.public_url,
