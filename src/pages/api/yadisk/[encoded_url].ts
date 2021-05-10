@@ -1,6 +1,7 @@
 import { NextApiRequest, NextApiResponse } from "next"
 import nc from 'next-connect'
 import RSS from "rss"
+import morgan from "morgan"
 
 import { recursiveResource } from "../../../app/yadisk"
 import { decodeDiskURL } from "../../../app/YaDiskURL"
@@ -62,6 +63,7 @@ const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>
 
 // noinspection JSUnusedGlobalSymbols
 export default nc<NextApiRequest, NextApiResponse>()
+  .use(morgan('tiny'))
   .get(async (req, res) => {
     const { encoded_url } = req.query
     const diskURL = decodeDiskURL(encoded_url as string)
