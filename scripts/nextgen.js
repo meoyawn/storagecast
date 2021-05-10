@@ -1,7 +1,6 @@
 const fs = require("fs")
 const path = require("path")
 const { SitemapStream } = require('sitemap')
-const sharp = require('sharp')
 
 const readEnv = path =>
   fs.readFileSync(path)
@@ -45,42 +44,6 @@ function genSitemap() {
   sitemap.pipe(fs.createWriteStream(path.join("public", "sitemap.xml")))
 }
 
-async function genManifest() {
-  const icons = [
-    {
-      src: "/manifest/icon-192x192.png",
-      sizes: "192x192",
-      type: "image/png"
-    },
-    {
-      src: "/manifest/icon-512x512.png",
-      sizes: "512x512",
-      type: "image/png"
-    }
-  ]
-
-  const icon = sharp("src/images/icon.png")
-  await Promise.all(icons.map(({ src, sizes }) => {
-    const [w, h] = sizes.split("x").map(s => parseInt(s))
-    icon.resize(w, h).toFile(`public${src}`)
-  }))
-
-  const manifest = {
-    name: dotEnv.SITE_NAME,
-    icons,
-  }
-
-  if (dotEnv.THEME_COLOR) {
-    // browser toolbar
-    manifest.theme_color = dotEnv.THEME_COLOR
-    // splash screen
-    manifest.background_color = dotEnv.THEME_COLOR
-  }
-
-  fs.writeFileSync(`public${dotEnv.MANIFEST}`, JSON.stringify(manifest))
-}
-
 (async () => {
   genSitemap()
-  await genManifest()
 })()
