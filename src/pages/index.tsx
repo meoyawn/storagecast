@@ -35,9 +35,9 @@ export default function Index(): JSX.Element {
         <ol>
           <li>Go to <a href="https://disk.yandex.ru">https://disk.yandex.ru</a></li>
           <li>Upload a folder with audios</li>
-          <li>(Optional) Upload an image for podcast artwork</li>
+          <li>(Optional) Put an image there for podcast artwork</li>
           <li>Right click the folder → Share → Copy link</li>
-          <li>Paste the link below</li>
+          <li>Paste the link below ↓</li>
         </ol>
       </div>
 
