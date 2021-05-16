@@ -41,31 +41,27 @@ export default function Index(): JSX.Element {
         </ol>
       </div>
 
-      <div className="flex flex-col space-y-4 shadow-md border p-4 rounded-md">
+      <label className="flex flex-col">
+        <span className="font-semibold">Folder link:</span>
+        <input
+          type="url"
+          onChange={({ target }) => setText(target.value)}
+        />
+      </label>
 
+      {url && (
         <label className="flex flex-col">
-          <span className="font-semibold">Folder link:</span>
-
-          <input
-            type="url"
-            onChange={({ target }) => setText(target.value)}
-          />
+          <span className="font-semibold">Podcast RSS:</span>
+          <a
+            className="text-blue-600 font-medium break-words"
+            href={url}
+            target="_blank"
+            rel="noreferrer"
+          >
+            {url}
+          </a>
         </label>
-
-        {url && (
-          <label className="flex flex-col">
-            <span className="font-semibold">Podcast RSS:</span>
-            <a
-              className="text-blue-600 font-medium break-words"
-              href={url}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {url}
-            </a>
-          </label>
-        )}
-      </div>
+      )}
     </div>
   )
 }
