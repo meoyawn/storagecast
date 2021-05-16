@@ -16,42 +16,56 @@ export default function Index(): JSX.Element {
     : undefined
 
   return (
-    <div className='flex flex-col space-y-4'>
+    <div className='flex flex-col space-y-4 m-4'>
 
       <SEO
         title="Storagecast"
         description="Yandex.Disk as a podcast"
       />
 
-      <h1 className="text-3xl font-semibold">Yandex.Disk as a podcast</h1>
+      <div className="prose">
+        <h1>Yandex.Disk as a podcast</h1>
+        <a
+          href="https://github.com/meoyawn/storagecast"
+          target="_blank"
+          rel="noreferrer"
+        >
+          Source code
+        </a>
+        <ol>
+          <li>Go to <a href="https://disk.yandex.ru">https://disk.yandex.ru</a></li>
+          <li>Upload a folder with audios</li>
+          <li>(Optional) Upload an image for podcast artwork</li>
+          <li>Right click the folder → Share → Copy link</li>
+          <li>Paste the link below</li>
+        </ol>
+      </div>
 
-      <a
-        className="text-blue-600 font-medium"
-        href="https://github.com/meoyawn/storagecast"
-        target="_blank"
-        rel="noreferrer"
-      >
-        Source code
-      </a>
+      <div className="flex flex-col space-y-4 shadow-md border p-4 rounded-md">
 
-      <label className="flex flex-col">
-        <span className="font-semibold">Folder URL:</span>
+        <label className="flex flex-col">
+          <span className="font-semibold">Folder link:</span>
 
-        <input
-          type="url"
-          required
-          onChange={({ target }) => setText(target.value)}
-        />
-      </label>
+          <input
+            type="url"
+            onChange={({ target }) => setText(target.value)}
+          />
+        </label>
 
-      <a
-        className="text-blue-600 font-medium"
-        href={url}
-        target="_blank"
-        rel="noreferrer"
-      >
-        {url}
-      </a>
+        {url && (
+          <label className="flex flex-col">
+            <span className="font-semibold">Podcast RSS:</span>
+            <a
+              className="text-blue-600 font-medium break-words"
+              href={url}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {url}
+            </a>
+          </label>
+        )}
+      </div>
     </div>
   )
 }
