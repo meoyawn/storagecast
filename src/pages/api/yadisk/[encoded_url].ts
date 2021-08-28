@@ -28,7 +28,7 @@ const toRSS = (req: NextApiRequest, dir: DiskDir, files: ReadonlyArray<DiskFile>
 
   const rss = new RSS({
     custom_namespaces: {
-      itunes: 'https://www.itunes.com/dtds/podcast-1.0.dtd',
+      itunes: 'http://www.itunes.com/dtds/podcast-1.0.dtd',
     },
     custom_elements,
 
