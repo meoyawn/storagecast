@@ -28,8 +28,7 @@
   "scripts": {
     "build": "next build",
     "dev": "next dev",
-    "export": "next export",
-    "lint": "eslint --fix src --ext .js,.jsx,.ts,.tsx",
+    "lint": "next lint",
     "start": "next start"
   }
 }
