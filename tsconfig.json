@@ -18,7 +18,8 @@
     "resolveJsonModule": true,
     "skipLibCheck": true,
     "strict": true,
-    "target": "ES5"
+    "target": "ES5",
+    "incremental": true
   },
   "include": [
     "**/*.ts",

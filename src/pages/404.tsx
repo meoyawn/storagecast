@@ -5,10 +5,10 @@ import SEO from "../components/SEO";
 // noinspection JSUnusedGlobalSymbols
 export default function NotFound(): JSX.Element {
   return (
-    <div className="prose">
-      <SEO title="Not found" />
+    <main>
+      <SEO title="Not found"/>
 
       <h1>Not found</h1>
-    </div>
+    </main>
   )
 }

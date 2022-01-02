@@ -1,29 +1,22 @@
 {
   "dependencies": {
-    "next": "^11.0.1",
+    "next": "^12.0.7",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "rss": "^1.2.2"
   },
   "devDependencies": {
-    "@tailwindcss/forms": "^0.3.2",
-    "@tailwindcss/typography": "^0.4.0",
-    "@types/jest": "^27.0.1",
-    "@types/node": "^16.4.0",
+    "@types/node": "^17.0.6",
     "@types/react": "^17.0.0",
     "@types/rss": "^0.0.29",
-    "@typescript-eslint/eslint-plugin": "^4.0.1",
-    "@typescript-eslint/parser": "^4.0.1",
-    "autoprefixer": "^10.1.0",
-    "eslint": "^7.5.0",
-    "eslint-config-next": "^11.0.1",
+    "@typescript-eslint/eslint-plugin": "^5.8.1",
+    "@typescript-eslint/parser": "^5.8.1",
+    "eslint": "^8.6.0",
+    "eslint-config-next": "^12.0.7",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",
-    "jest": "^27.0.1",
-    "postcss": "^8.2.1",
+    "simpledotcss": "^1.0.5",
     "sitemap": "^7.0.0",
-    "tailwindcss": "^2.0.2",
-    "ts-jest": "^27.0.1",
     "typescript": "^4.3.2"
   },
   "private": true,
@@ -32,7 +25,6 @@
     "dev": "next dev",
     "export": "next export",
     "lint": "eslint --fix src --ext .js,.jsx,.ts,.tsx",
-    "start": "next start",
-    "test": "jest"
+    "start": "next start"
   }
 }

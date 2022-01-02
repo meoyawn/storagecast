@@ -1,15 +1,11 @@
-import '../tailwind.css'
+import 'simpledotcss/simple.min.css'
 
 import React from "react"
-import { AppProps } from 'next/app'
-
-import Layout from '../components/Layout'
+import {AppProps} from 'next/app'
 
 // noinspection JSUnusedGlobalSymbols
-export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+export default function MyApp({Component, pageProps}: AppProps): JSX.Element {
   return (
-    <Layout>
-      <Component {...pageProps} />
-    </Layout>
+    <Component {...pageProps} />
   )
 }

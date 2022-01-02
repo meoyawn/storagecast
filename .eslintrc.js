@@ -23,6 +23,7 @@ module.exports = {
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
     'plugin:@typescript-eslint/recommended',
+    "next",
   ],
   rules: {
     "eqeqeq": ["error", "always"],
@@ -37,7 +38,7 @@ module.exports = {
       'ts-check': 'allow-with-description',
       "minimumDescriptionLength": 1,
     }],
-    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/no-unused-vars": ["error", {argsIgnorePattern: "^_"}],
 
     "jsx-a11y/media-has-caption": "off",
   },
