@@ -8,6 +8,6 @@ describe.concurrent("api", () => {
       "https://disk.yandex.ru/d/50_ycPLmwx3asA",
       undefined,
     )
-    expect(pr._embedded.items).toEqual([])
+    expect(pr._embedded.items.length).toEqual(4)
   })
 })
