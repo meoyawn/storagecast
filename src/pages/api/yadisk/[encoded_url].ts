@@ -49,10 +49,14 @@ const toRSS = (
     const { mime_type, path, resource_id, size } = a
 
     rss.item({
+      /**
+       * dir + name
+       */
       title: path
         .replace(/\//g, " ")
         .replace(/\.[^/.]+$/, "")
         .trim(),
+
       date: new Date(monotoneDate),
       description: "",
       url: "",
@@ -70,7 +74,6 @@ const toRSS = (
   return rss
 }
 
-// noinspection JSUnusedGlobalSymbols
 export default async function EncodedURL(
   req: NextApiRequest,
   res: NextApiResponse,
