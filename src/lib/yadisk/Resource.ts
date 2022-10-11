@@ -21,7 +21,7 @@ export interface DiskFile {
   size: number
   resource_id: string
   modified: string
-  mime_type: "audio/mpeg" | "image/jpeg"
+  mime_type: string
   file: string
   path: string
   media_type: "audio" | "image"

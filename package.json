@@ -19,10 +19,13 @@
     "eslint-config-next": "^12.0.7",
     "eslint-plugin-jsx-a11y": "^6.3.1",
     "eslint-plugin-react": "^7.20.3",
+    "prettier": "^2.7.1",
+    "prettier-plugin-organize-imports": "^3.1.1",
     "simpledotcss": "^2.0.0",
     "sitemap": "^7.0.0",
     "typescript": "^4.3.2",
-    "vercel": "^28.4.9"
+    "vercel": "^28.4.9",
+    "vitest": "^0.24.1"
   },
   "private": true,
   "scripts": {
@@ -30,6 +33,7 @@
     "dev": "next dev",
     "lint": "next lint",
     "start": "next start",
-    "deploy": "vercel --prod"
+    "deploy": "vercel --prod",
+    "test": "vitest run src/"
   }
 }
