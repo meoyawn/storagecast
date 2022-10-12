@@ -62,7 +62,7 @@ const toRSS = (
       url: "",
       enclosure: {
         url: downloadUrl(a),
-        type: path.endsWith(".m4b") ? "audio/mp4" : mime_type,
+        type: path.endsWith(".m4b") ? "audio/x-m4a" : mime_type,
         size,
       },
       guid: resource_id,
