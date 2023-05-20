@@ -1,5 +1,5 @@
-import { publicResource } from "../lib/yadisk/api"
 import { DiskDir, DiskFile, DiskItem } from "../lib/yadisk/Resource"
+import { publicResource } from "../lib/yadisk/api"
 
 interface RecursiveDir {
   dir: DiskDir

@@ -1,12 +1,10 @@
-// next.config.js
-const withPreact = require('next-plugin-preact');
-
-module.exports = withPreact({
+/** @type {import("next").NextConfig} */
+module.exports = {
   webpack: (config, { dev, isServer }) => {
     if (!dev && !isServer) {
-      require('./scripts/nextgen')
+      require("./scripts/nextgen")
     }
 
     return config
-  }
-});
+  },
+}

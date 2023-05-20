@@ -1,6 +1,10 @@
-import { IncomingMessage } from "http";
+import { NextRequest } from "next/server"
 
-export const mkUrl = ({ baseURL, path, query }: {
+export const mkUrl = ({
+  baseURL,
+  path,
+  query,
+}: {
   baseURL: string
   path: string
   query?: Partial<Record<string, string | number | boolean>>
@@ -23,12 +27,10 @@ export const mkUrl = ({ baseURL, path, query }: {
 
 // noinspection HttpUrlsUsage
 const base = (host: string): string =>
-  host.startsWith("local")
-    ? `http://${host}`
-    : `https://${host}`
+  host.startsWith("local") ? `http://${host}` : `https://${host}`
 
-export const reqURL = ({ headers, url }: IncomingMessage): string =>
+export const reqURL = ({ headers, url }: NextRequest): string =>
   mkUrl({
-    baseURL: base(headers.host ?? ''),
-    path: url ?? '',
+    baseURL: base(headers.get("host") ?? ""),
+    path: url ?? "",
   })

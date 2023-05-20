@@ -1,10 +1,9 @@
-import { NextApiRequest, NextApiResponse } from "next"
-import RSS from "rss"
-
-import { recursiveResource } from "../../../app/yadisk"
 import { decodeDiskURL } from "../../../app/YaDiskURL"
+import { recursiveResource } from "../../../app/yadisk"
 import { mkUrl, reqURL } from "../../../lib/url"
-import { DiskDir, DiskFile } from "../../../lib/yadisk/Resource"
+import { type DiskDir, type DiskFile } from "../../../lib/yadisk/Resource"
+import { type NextRequest } from "next/server"
+import RSS from "rss"
 
 const downloadUrl = ({ public_key, path }: DiskFile): string =>
   mkUrl({
@@ -17,10 +16,10 @@ const downloadUrl = ({ public_key, path }: DiskFile): string =>
   })
 
 const toRSS = (
-  req: NextApiRequest,
+  req: NextRequest,
   dir: DiskDir,
   files: ReadonlyArray<DiskFile>,
-) => {
+): RSS => {
   const img = files.find(({ media_type }) => media_type === "image")?.preview
 
   const custom_elements: Record<`itunes:${string}`, unknown>[] = [
@@ -74,18 +73,22 @@ const toRSS = (
   return rss
 }
 
-export default async function EncodedURL(
-  req: NextApiRequest,
-  res: NextApiResponse,
-): Promise<void> {
-  const { encoded_url } = req.query
-  const diskURL = decodeDiskURL(encoded_url as string)
+// noinspection JSUnusedGlobalSymbols
+export const config = { runtime: "edge" }
 
-  if (diskURL.startsWith("https")) {
-    const { dir, files } = await recursiveResource(diskURL)
-    const rss = toRSS(req, dir, files)
-    res.writeHead(200, { "content-type": "application/xml" }).end(rss.xml())
-  } else {
-    res.writeHead(400).end(`${diskURL} is not a Yandex Disk URL`)
+export default async function RenderRSS(req: NextRequest): Promise<Response> {
+  const encoded_url = req.nextUrl.searchParams.get("encoded_url")
+  if (!encoded_url) throw new Error(`encoded_url is not in ${req.nextUrl}`)
+
+  const diskURL = decodeDiskURL(encoded_url)
+
+  if (!diskURL.startsWith("https")) {
+    return new Response(`${diskURL} is not a Yandex Disk URL`, { status: 400 })
   }
+
+  const { dir, files } = await recursiveResource(diskURL)
+  const rss = toRSS(req, dir, files)
+  return new Response(rss.xml(), {
+    headers: { "content-type": "application/xml" },
+  })
 }

@@ -1,0 +1,17 @@
+diff --git a/node_modules/xml/lib/xml.js b/node_modules/xml/lib/xml.js
+index 01a5654..7cedbbb 100644
+--- a/node_modules/xml/lib/xml.js
++++ b/node_modules/xml/lib/xml.js
+@@ -21,11 +21,7 @@ function xml(input, options) {
+ 
+ 
+     function delay (func) {
+-        if (!instant) {
+-            func();
+-        } else {
+-            process.nextTick(func);
+-        }
++        func();
+     }
+ 
+     function append (interrupt, out) {

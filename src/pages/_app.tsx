@@ -1,11 +1,8 @@
-import 'simpledotcss/simple.min.css'
-
-import React from "react"
-import {AppProps} from 'next/app'
+import "simpledotcss/simple.min.css"
+import { type AppProps } from "next/app"
+import React, { type JSX } from "react"
 
 // noinspection JSUnusedGlobalSymbols
-export default function MyApp({Component, pageProps}: AppProps): JSX.Element {
-  return (
-    <Component {...pageProps} />
-  )
+export default function MyApp({ Component, pageProps }: AppProps): JSX.Element {
+  return <Component {...pageProps} />
 }
