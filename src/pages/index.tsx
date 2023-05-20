@@ -6,7 +6,8 @@ import React, { type JSX, useEffect, useState } from "react"
 // noinspection JSUnusedGlobalSymbols
 export default function Index(): JSX.Element {
   const [text, setText] = useState("")
-  const [url, setUrl] = useState<string | undefined>(undefined)
+  const [url, setUrl] = useState<string | undefined>()
+
   useEffect(() => {
     setUrl(
       text.startsWith("https://")
