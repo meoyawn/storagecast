@@ -1,18 +1,22 @@
 import { encodeDiskURL } from "../app/YaDiskURL"
 import SEO from "../components/SEO"
 import { mkUrl } from "../lib/url"
-import React, { type JSX, useState } from "react"
+import React, { type JSX, useEffect, useState } from "react"
 
 // noinspection JSUnusedGlobalSymbols
 export default function Index(): JSX.Element {
   const [text, setText] = useState("")
-
-  const url = text.startsWith("https://")
-    ? mkUrl({
-        baseURL: process.env.NEXT_PUBLIC_SITE ?? "",
-        path: `/api/yadisk/${encodeDiskURL(text)}`,
-      })
-    : undefined
+  const [url, setUrl] = useState<string | undefined>(undefined)
+  useEffect(() => {
+    setUrl(
+      text.startsWith("https://")
+        ? mkUrl({
+            baseURL: location.origin,
+            path: `/api/yadisk/${encodeDiskURL(text)}`,
+          })
+        : undefined,
+    )
+  }, [text])
 
   return (
     <main>

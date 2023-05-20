@@ -1,18 +1,15 @@
 import { decodeDiskURL } from "../../../app/YaDiskURL"
 import { recursiveResource } from "../../../app/yadisk"
-import { mkUrl, reqURL } from "../../../lib/url"
+import { baseURL, mkUrl, reqURL } from "../../../lib/url"
 import { type DiskDir, type DiskFile } from "../../../lib/yadisk/Resource"
 import { type NextRequest } from "next/server"
 import RSS from "rss"
 
-const downloadUrl = ({ public_key, path }: DiskFile): string =>
+const downloadUrl = (req: Request, { public_key, path }: DiskFile): string =>
   mkUrl({
-    baseURL: process.env.NEXT_PUBLIC_SITE ?? "",
+    baseURL: baseURL(req.headers.get("host") ?? ""),
     path: "/api/yadisk/download",
-    query: {
-      public_key,
-      path,
-    },
+    query: { public_key, path },
   })
 
 const toRSS = (
@@ -60,7 +57,7 @@ const toRSS = (
       description: "",
       url: "",
       enclosure: {
-        url: downloadUrl(a),
+        url: downloadUrl(req, a),
         type: path.endsWith(".m4b") ? "audio/x-m4a" : mime_type,
         size,
       },

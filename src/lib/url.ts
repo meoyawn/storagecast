@@ -25,12 +25,13 @@ export const mkUrl = ({
   return ret
 }
 
-// noinspection HttpUrlsUsage
-const base = (host: string): string =>
-  host.startsWith("local") ? `http://${host}` : `https://${host}`
+export const baseURL = (host: string): string =>
+  host.includes("localhost") || host.includes("127.0.0.1")
+    ? `http://${host}`
+    : `https://${host}`
 
 export const reqURL = ({ headers, url }: NextRequest): string =>
   mkUrl({
-    baseURL: base(headers.get("host") ?? ""),
+    baseURL: baseURL(headers.get("host") ?? ""),
     path: url ?? "",
   })

@@ -1,13 +1,15 @@
 {
   "private": true,
   "scripts": {
-    "build": "bun x @cloudflare/next-on-pages",
-    "deploy": "vercel --prod",
+    "build": "next build",
+    "clean": "rm -rf .next/ .vercel/",
+    "deploy": "wrangler pages publish .vercel/output/static/ --commit-dirty=true",
     "dev": "concurrently \"yarn:dev:*\"",
-    "dev:build": "bun x @cloudflare/next-on-pages --watch",
+    "dev:build": "next-on-pages --watch",
     "dev:wrangler": "wrangler pages dev .vercel/output/static/ --compatibility-flag=nodejs_compat",
-    "postinstall": "patch-package",
+    "postinstall": "patch-package --use-yarn",
     "lint": "next lint",
+    "pages": "next-on-pages",
     "start": "next start",
     "test": "vitest run src/"
   },
@@ -18,6 +20,7 @@
     "rss": "^1.2.2"
   },
   "devDependencies": {
+    "@cloudflare/next-on-pages": "^0.10.1",
     "@ianvs/prettier-plugin-sort-imports": "^3.7.2",
     "@types/node": "^20.2.1",
     "@types/react": "^18.0.9",
