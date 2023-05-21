@@ -9,3 +9,4 @@ public/sitemap.xml
 out/
 
 .vercel
+cache/

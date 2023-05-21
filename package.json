@@ -1,13 +1,14 @@
 {
   "private": true,
   "scripts": {
+    "prebuild": "next telemetry disable",
     "build": "(git apply patches/xml+1.0.1.patch || true) && next build",
     "clean": "rm -rf .next/ .vercel/",
     "deploy": "wrangler pages publish .vercel/output/static/ --commit-dirty=true",
     "dev": "concurrently \"yarn:dev:*\"",
     "dev:pages": "next-on-pages --watch",
     "dev:wrangler": "wrangler pages dev .vercel/output/static/ --compatibility-flag=nodejs_compat",
-    "lint": "next lint",
+    "lint": "next lint --fix",
     "pages": "next-on-pages",
     "start": "next start",
     "test": "vitest run src/"

@@ -4,15 +4,11 @@ module.exports = {
   parserOptions: {
     project: "tsconfig.json",
   },
-  plugins: [
-    '@typescript-eslint',
-    "react",
-    "jsx-a11y",
-  ],
+  plugins: ["@typescript-eslint", "react", "jsx-a11y"],
   settings: {
     react: {
-      version: "detect"
-    }
+      version: "detect",
+    },
   },
   env: {
     browser: true,
@@ -22,23 +18,33 @@ module.exports = {
     "eslint:recommended",
     "plugin:react/recommended",
     "plugin:jsx-a11y/recommended",
-    'plugin:@typescript-eslint/recommended',
+    "plugin:@typescript-eslint/recommended",
     "next",
   ],
   rules: {
-    "eqeqeq": ["error", "always"],
+    eqeqeq: ["error", "always"],
     "no-console": "error",
 
     "@typescript-eslint/no-for-in-array": "error",
     "@typescript-eslint/no-var-requires": "off",
-    "@typescript-eslint/ban-ts-comment": ["error", {
-      'ts-expect-error': true,
-      'ts-ignore': 'allow-with-description',
-      'ts-nocheck': true,
-      'ts-check': 'allow-with-description',
-      "minimumDescriptionLength": 1,
-    }],
-    "@typescript-eslint/no-unused-vars": ["error", {argsIgnorePattern: "^_"}],
+    "@typescript-eslint/ban-ts-comment": [
+      "error",
+      {
+        "ts-expect-error": true,
+        "ts-ignore": "allow-with-description",
+        "ts-nocheck": true,
+        "ts-check": "allow-with-description",
+        minimumDescriptionLength: 1,
+      },
+    ],
+    "@typescript-eslint/no-unused-vars": ["error", { argsIgnorePattern: "^_" }],
+    "@typescript-eslint/consistent-type-imports": [
+      "error",
+      {
+        prefer: "type-imports",
+        fixStyle: "inline-type-imports",
+      },
+    ],
 
     "jsx-a11y/media-has-caption": "off",
   },

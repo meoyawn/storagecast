@@ -1,5 +1,5 @@
 import { mkUrl } from "../url"
-import { DiskResource } from "./Resource"
+import { type DiskResource } from "./Resource"
 
 const BASE_URL = "https://cloud-api.yandex.net"
 

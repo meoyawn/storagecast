@@ -1,5 +1,5 @@
-import React, { ReactNode } from "react";
-import Head from "next/head";
+import Head from "next/head"
+import React, { type JSX, type ReactNode } from "react"
 
 export default function SEO({
   title,
@@ -7,7 +7,7 @@ export default function SEO({
   description,
   image,
   twitterCard = "summary",
-  twitterSite
+  twitterSite,
 }: {
   children?: ReactNode
   title: string
