@@ -25,6 +25,7 @@ module.exports = {
     eqeqeq: ["error", "always"],
     "no-console": "error",
 
+    "@typescript-eslint/require-array-sort-compare": "error",
     "@typescript-eslint/no-for-in-array": "error",
     "@typescript-eslint/no-var-requires": "off",
     "@typescript-eslint/ban-ts-comment": [

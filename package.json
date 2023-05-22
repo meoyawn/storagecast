@@ -1,7 +1,6 @@
 {
   "private": true,
   "scripts": {
-    "prebuild": "next telemetry disable",
     "build": "(git apply patches/xml+1.0.1.patch || true) && next build",
     "clean": "rm -rf .next/ .vercel/",
     "deploy": "wrangler pages publish .vercel/output/static/ --commit-dirty=true",
